@@ -1,0 +1,3 @@
+[submodule "STC.Shared"]
+	path = STC.Shared
+	url = https://github.com/MySeniorTestCase/STC.Shared.git

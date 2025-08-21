@@ -12,4 +12,8 @@
         <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\STC.Shared\src\Utilities\STC.Shared.JwtAuthentication\STC.Shared.JwtAuthentication.csproj" />
+    </ItemGroup>
+
 </Project>

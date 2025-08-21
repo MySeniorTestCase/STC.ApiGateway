@@ -1,10 +1,29 @@
 using System.Net;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.RateLimiting;
+using STC.Shared.JwtAuthentication;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetRequiredSection("ReverseProxy:Yarp"));
+
+builder.Services.AddJwtAuthenticationDependencies(options: jwtOpt =>
+{
+    var jwtSct = builder.Configuration.GetRequiredSection(key: "Auth:JwtSettings");
+
+    jwtOpt.SecurityKey = jwtSct["SecurityKey"] ??
+                         throw new InvalidOperationException("SecurityKey is not configured.");
+    jwtOpt.Audience = jwtSct["Audience"] ??
+                      throw new InvalidOperationException("Audience is not configured.");
+    jwtOpt.Issuer = jwtSct["Issuer"] ??
+                    throw new InvalidOperationException("Issuer is not configured.");
+}).AddAuthorization(configure: authOpt =>
+{
+    authOpt.AddPolicy("Authenticated", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+    });
+});
 
 builder.Services.AddRateLimiter(rateLimiterOptions =>
 {
@@ -14,7 +33,7 @@ builder.Services.AddRateLimiter(rateLimiterOptions =>
 
         await context.HttpContext.Response.WriteAsync("Too many requests.", ctk);
     };
-    
+
     rateLimiterOptions.AddTokenBucketLimiter(
         policyName: "tokenBucket", configureOptions: tokenBucketRateLimiterOpt =>
         {
@@ -29,5 +48,8 @@ builder.Services.AddRateLimiter(rateLimiterOptions =>
 WebApplication app = builder.Build();
 
 app.UseRateLimiter();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapReverseProxy();
+
 app.Run();

@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92269DA9-FD9B-4E3D-80F1-54DF322E5599}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E992AE31-7E47-42E0-A4A8-D59BA55ED53C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STC.ApiGateway", "src\Presentation\STC.ApiGateway\STC.ApiGateway.csproj", "{649AE3B0-F8A9-4353-B553-02460742AAD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E992AE31-7E47-42E0-A4A8-D59BA55ED53C} = {92269DA9-FD9B-4E3D-80F1-54DF322E5599}
+		{649AE3B0-F8A9-4353-B553-02460742AAD4} = {E992AE31-7E47-42E0-A4A8-D59BA55ED53C}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{649AE3B0-F8A9-4353-B553-02460742AAD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649AE3B0-F8A9-4353-B553-02460742AAD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649AE3B0-F8A9-4353-B553-02460742AAD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649AE3B0-F8A9-4353-B553-02460742AAD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

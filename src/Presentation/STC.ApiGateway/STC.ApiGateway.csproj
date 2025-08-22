@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\STC.Shared\src\Contracts\STC.Shared.Contracts.Auth\STC.Shared.Contracts.Auth.csproj" />
       <ProjectReference Include="..\..\..\STC.Shared\src\Utilities\STC.Shared.JwtAuthentication\STC.Shared.JwtAuthentication.csproj" />
     </ItemGroup>
 

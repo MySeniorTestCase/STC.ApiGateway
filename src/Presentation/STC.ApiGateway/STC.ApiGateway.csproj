@@ -4,11 +4,10 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <PublishAot>true</PublishAot>
-        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Scalar.AspNetCore" Version="2.6.9" />
         <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
     </ItemGroup>
 

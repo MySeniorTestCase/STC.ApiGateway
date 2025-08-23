@@ -13,6 +13,12 @@ public class WriteUserInformationsToRequestHeaderMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
+        if (context.User.Identity is null || context.User.Identity.IsAuthenticated is false)
+        {
+            await next(context: context);
+            return;
+        }
+
         context.Request.Headers.Remove(key: SharedClaimConstants.UserId);
         string? userId = context.User.Claims.FirstOrDefault(_claim => _claim.Type == UserIdClaim)
             ?.Value;

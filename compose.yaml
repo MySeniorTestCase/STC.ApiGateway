@@ -1,0 +1,26 @@
+﻿services:
+  stc.apigateway:
+    image: stc.apigateway
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      Auth__JwtSettings__SecurityKey: "B2IgOW_rN8oMwr1wVIguILaKwPGrQ10-dvPnmL1-wCA"
+      Auth__JwtSettings__Issuer: "STC.Auth"
+      Auth__JwtSettings__Audience: "STC.Auth"
+      ReverseProxy__Yarp__Clusters__auth_api__Destinations__destination1__Address: "http://stc.auth:8080"
+      ReverseProxy__Yarp__Clusters__productCatalog_api__Destinations__destination1__Address: "http://stc.productcatalog:8080"
+    ports:
+      - 5000:8080
+    volumes:
+      - apigateway-data:/app
+    networks:
+      - stc-network
+    build:
+      context: .
+      dockerfile: src/Presentation/STC.ApiGateway/Dockerfile
+
+volumes:
+  apigateway-data:
+
+networks:
+  stc-network:
+    external: true
